@@ -1,0 +1,56 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*' # Sadece v1.0.0 gibi bir etiket (tag) atıldığında çalışır
+
+permissions:
+  contents: write # Release (sürüm) oluşturmak için gerekli izin
+
+jobs:
+  build-and-release:
+    name: Build & Release
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        include:
+          - os: linux
+            arch: amd64
+            name: killport-linux-amd64
+          - os: linux
+            arch: arm64
+            name: killport-linux-arm64
+          - os: darwin
+            arch: amd64
+            name: killport-darwin-amd64
+          - os: darwin
+            arch: arm64
+            name: killport-darwin-arm64
+          - os: windows
+            arch: amd64
+            name: killport-windows-amd64.exe
+            
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21' # Veya sisteminde kurulu olan Go sürümü
+
+      - name: Build
+        env:
+          GOOS: ${{ matrix.os }}
+          GOARCH: ${{ matrix.arch }}
+        run: |
+          mkdir -p build
+          go build -o build/${{ matrix.name }} main.go
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/${{ matrix.name }}
+          generate_release_notes: true
