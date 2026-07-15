@@ -54,35 +54,47 @@ killport -h         # Shows the interactive help menu
 ## 📦 Installation
 
 <details open>
-<summary><b>🌍 Any platform — with Go (macOS / Linux / Windows)</b></summary>
+<summary><b>🪟 Windows (PowerShell)</b></summary>
 
-```bash
-go install github.com/Emiran404/killport@latest
+```powershell
+Invoke-WebRequest -Uri "https://github.com/Emiran404/killport/releases/latest/download/killport-windows-amd64.exe" -OutFile "killport.exe"
+mkdir "$env:USERPROFILE\bin" -Force
+move killport.exe "$env:USERPROFILE\bin\"
+setx PATH "$env:PATH;$env:USERPROFILE\bin"
+# open a new terminal, then:
+killport -h
 ```
-
-> If `killport: command not found` appears, make sure your Go bin directory (e.g. `~/go/bin`) is in your `PATH`.
 </details>
 
 <details>
-<summary><b>🍎 macOS / 🐧 Linux (Build from source)</b></summary>
+<summary><b>🍎 macOS</b></summary>
 
 ```bash
-git clone https://github.com/Emiran404/killport.git
-cd killport
-go build -o killport main.go
+# Apple Silicon (M1/M2/M3): arm64  ·  Intel: amd64
+curl -L -o killport https://github.com/Emiran404/killport/releases/latest/download/killport-darwin-arm64
+chmod +x killport
 sudo mv killport /usr/local/bin/
 ```
 </details>
 
 <details>
-<summary><b>🪟 Windows (Build from source)</b></summary>
+<summary><b>🐧 Linux</b></summary>
 
-```powershell
-git clone https://github.com/Emiran404/killport.git
-cd killport
-go build -o killport.exe main.go
-# Then move killport.exe to a folder in your PATH
+```bash
+# amd64 for most machines  ·  ARM: arm64
+curl -L -o killport https://github.com/Emiran404/killport/releases/latest/download/killport-linux-amd64
+chmod +x killport
+sudo mv killport /usr/local/bin/
 ```
+</details>
+
+<details>
+<summary><b>🌍 Any platform — with Go</b></summary>
+
+```bash
+go install github.com/Emiran404/killport@latest
+```
+> If `killport: command not found` appears, make sure your Go bin directory (e.g. `~/go/bin`) is in your `PATH`.
 </details>
 
 <br/>
@@ -118,32 +130,45 @@ killport -h         # Yardım menüsünü gösterir
 ## 📦 Kurulum
 
 <details open>
-<summary><b>🌍 Tüm Platformlar — Go ile (macOS / Linux / Windows)</b></summary>
+<summary><b>🪟 Windows (PowerShell)</b></summary>
 
-```bash
-go install github.com/emirhan/killport@latest
+```powershell
+Invoke-WebRequest -Uri "https://github.com/Emiran404/killport/releases/latest/download/killport-windows-amd64.exe" -OutFile "killport.exe"
+mkdir "$env:USERPROFILE\bin" -Force
+move killport.exe "$env:USERPROFILE\bin\"
+setx PATH "$env:PATH;$env:USERPROFILE\bin"
+# yeni bir terminal aç, sonra:
+killport -h
 ```
 </details>
 
 <details>
-<summary><b>🍎 macOS / 🐧 Linux (Kaynaktan Derleme)</b></summary>
+<summary><b>🍎 macOS</b></summary>
 
 ```bash
-git clone https://github.com/Emiran404/killport.git
-cd killport
-go build -o killport main.go
+# Apple Silicon (M1/M2/M3): arm64  ·  Intel: amd64
+curl -L -o killport https://github.com/Emiran404/killport/releases/latest/download/killport-darwin-arm64
+chmod +x killport
 sudo mv killport /usr/local/bin/
 ```
 </details>
 
 <details>
-<summary><b>🪟 Windows (Kaynaktan Derleme)</b></summary>
+<summary><b>🐧 Linux</b></summary>
 
-```powershell
-git clone https://github.com/Emiran404/killport.git
-cd killport
-go build -o killport.exe main.go
-# Derledikten sonra killport.exe dosyasını PATH'e kayıtlı bir klasöre taşıyın.
+```bash
+# Çoğu makine için: amd64  ·  ARM: arm64
+curl -L -o killport https://github.com/Emiran404/killport/releases/latest/download/killport-linux-amd64
+chmod +x killport
+sudo mv killport /usr/local/bin/
+```
+</details>
+
+<details>
+<summary><b>🌍 Tüm Platformlar — Go ile</b></summary>
+
+```bash
+go install github.com/Emiran404/killport@latest
 ```
 </details>
 
